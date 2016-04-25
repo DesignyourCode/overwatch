@@ -209,7 +209,7 @@ class DashboardTest extends WebDriverTestCase
     private function getGroups()
     {
         return $this->webDriver->findElements(
-            WebDriverBy::cssSelector('.groups > li.ng-scope')
+            WebDriverBy::cssSelector('.groups .widget-box')
         );
     }
 
@@ -243,7 +243,7 @@ class DashboardTest extends WebDriverTestCase
     private function getFirstTestDeleteButton()
     {
         return $this->webDriver->findElement(
-            WebDriverBy::cssSelector('ul.tests li:nth-child(1) a:nth-child(2)')
+            WebDriverBy::cssSelector('.tests li:nth-child(1) a:nth-child(4)')
         );
     }
 }
