@@ -26,13 +26,13 @@ class AddEditTestTest extends WebDriverTestCase
     {
         $this->webDriver->findElement(
             //View first test
-            WebDriverBy::cssSelector('.groups .widget-box:nth-child(1) .tests li:nth-child(1) .buttons a:nth-child(3)')
+            WebDriverBy::cssSelector('.groups .widget-box:nth-child(1) .tests li:nth-child(1) .buttons a:nth-child(2)')
         )->click();
         $this->waitForLoadingAnimation();
 
         $this->webDriver->findElement(
             //Edit test
-            WebDriverBy::cssSelector('.widget-content.test-controls .row a:nth-child(2)')
+            WebDriverBy::cssSelector('.widget-content.test-controls .row a:nth-child(1)')
         )->click();
         $this->waitForLoadingAnimation();
 
