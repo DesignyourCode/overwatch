@@ -15,7 +15,7 @@
                         <img ng-src="{{ userAvatar(user.email, 100) }}" alt="" />
                     </div>
 
-                    <h3 class="title">{{ user.email|uppercase }}</h3>
+                    <h3 class="title">{{ user.email }}</h3>
                     <div class="buttons">
                         <a class="btn btn-red btn-small" data-ng-click="removeUser(user.id)" title="Remove user '{{ user.email }}' from group '{{ group.name }}'"><i class="fa fa-user-times" aria-hidden="true"></i> Remove User from Group</a>
                     </div>
