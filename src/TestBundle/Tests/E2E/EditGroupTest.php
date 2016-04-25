@@ -30,8 +30,8 @@ class EditGroupTest extends WebDriverTestCase
     {
         $this->assertContains(TestGroupFixtures::$groups['group-1']->getName(), $this->getHeaderText());
         $this->assertCount(2, $this->getUsers());
-        $this->assertContains(UserFixtures::$users['user-1']->getEmail(), $this->getUsers()[0]->getText());
-        $this->assertContains(UserFixtures::$users['user-2']->getEmail(), $this->getUsers()[1]->getText());
+        $this->assertContains(strtoupper(UserFixtures::$users['user-1']->getEmail(), $this->getUsers()[0]->getText()));
+        $this->assertContains(strtoupper(UserFixtures::$users['user-2']->getEmail(), $this->getUsers()[1]->getText()));
     }
 
     public function testRenameGroup()

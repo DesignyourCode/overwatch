@@ -22,11 +22,11 @@ class ManageUsersTest extends WebDriverTestCase
     {
         $this->assertEquals('Manage Users', $this->getHeaderText());
         $this->assertCount(3, $this->getUsers());
-        $this->assertContains(UserFixtures::$users['user-1']->getEmail(), $this->getUsers()[0]->getText());
+        $this->assertContains(strtoupper(UserFixtures::$users['user-1']->getEmail(), $this->getUsers()[0]->getText()));
         $this->assertContains('role_super_admin', $this->getUsers(' div.user')[0]->getAttribute('class'));
-        $this->assertContains(UserFixtures::$users['user-2']->getEmail(), $this->getUsers()[1]->getText());
+        $this->assertContains(strtoupper(UserFixtures::$users['user-2']->getEmail(), $this->getUsers()[1]->getText()));
         $this->assertContains('role_user', $this->getUsers(' div.user')[1]->getAttribute('class'));
-        $this->assertContains(UserFixtures::$users['user-3']->getEmail(), $this->getUsers()[2]->getText());
+        $this->assertContains(strtoupper(UserFixtures::$users['user-3']->getEmail(), $this->getUsers()[2]->getText()));
         $this->assertContains('role_admin', $this->getUsers(' div.user')[2]->getAttribute('class'));
     }
 
