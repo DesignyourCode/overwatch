@@ -22,11 +22,11 @@ class ManageUsersTest extends WebDriverTestCase
     {
         $this->assertEquals('Manage Users', $this->getHeaderText());
         $this->assertCount(3, $this->getUsers());
-        $this->assertContains(UserFixtures::$users['user-1']->getEmail(), $this->getUsers()[0]->strtoupper(getText()));
+        $this->assertContains(UserFixtures::$users['user-1']->getEmail(), $this->getUsers()[0]->getText());
         $this->assertContains('role_super_admin', $this->getUsers(' div.user')[0]->getAttribute('class'));
-        $this->assertContains(UserFixtures::$users['user-2']->getEmail(), $this->getUsers()[1]->strtoupper(getText()));
+        $this->assertContains(UserFixtures::$users['user-2']->getEmail(), $this->getUsers()[1]->getText());
         $this->assertContains('role_user', $this->getUsers(' div.user')[1]->getAttribute('class'));
-        $this->assertContains(UserFixtures::$users['user-3']->getEmail(), $this->getUsers()[2]->strtoupper(getText()));
+        $this->assertContains(UserFixtures::$users['user-3']->getEmail(), $this->getUsers()[2]->getText());
         $this->assertContains('role_admin', $this->getUsers(' div.user')[2]->getAttribute('class'));
     }
 
@@ -38,7 +38,7 @@ class ManageUsersTest extends WebDriverTestCase
 
         $itsyou = $this->getUsers(':first-child div.user a:not([title])')[0];
         $this->assertTrue($itsyou->isDisplayed());
-        $this->assertContains("It's you!", $itsyou->strtoupper(getText()));
+        $this->assertContains("It's you!", $itsyou->getText());
     }
 
     public function testLockUser()
