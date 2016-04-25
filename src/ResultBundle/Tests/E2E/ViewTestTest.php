@@ -58,7 +58,7 @@ class ViewTestTest extends WebDriverTestCase
 
         $this->waitForLoadingAnimation();
         $this->assertCount(1, $this->webDriver->findElements(
-            WebDriverBy::cssSelector('.groups li:first-child .tests li div.test')
+            WebDriverBy::cssSelector('.groups .widget-box:first-child .tests li div.test')
         ));
     }
 
