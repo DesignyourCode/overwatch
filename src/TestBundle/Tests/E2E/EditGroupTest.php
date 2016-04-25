@@ -79,14 +79,14 @@ class EditGroupTest extends WebDriverTestCase
         $this->assertCount(1, $this->getUsers());
 
         $this->webDriver->findElement(
-            WebDriverBy::cssSelector('ul.users li:last-child a:nth-child(2)')
+            WebDriverBy::cssSelector('.edit-group-buttons a:nth-child(2)')
         )->click();
         $this->waitForAlert();
         $this->webDriver->switchTo()->alert()->dismiss();
         $this->assertCount(1, $this->getUsers());
 
         $this->webDriver->findElement(
-            WebDriverBy::cssSelector('ul.users li:last-child a:nth-child(2)')
+            WebDriverBy::cssSelector('.edit-group-buttons a:nth-child(2)')
         )->click();
         $this->waitForAlert();
         $this->webDriver->switchTo()->alert()->sendKeys(UserFixtures::$users['user-1']->getEmail());

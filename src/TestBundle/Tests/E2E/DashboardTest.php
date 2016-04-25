@@ -47,7 +47,7 @@ class DashboardTest extends WebDriverTestCase
 
         $this->assertFalse($this->webDriver->findElement(
             //Edit group button
-            WebDriverBy::cssSelector('.group a:nth-child(2)')
+            WebDriverBy::cssSelector('.groups .widget-box:first-child .widget-header .right a:first-child')
         )->isDisplayed());
         $this->assertFalse($this->getFirstTestDeleteButton()->isDisplayed());
         $this->assertFalse($this->webDriver->findElement(
@@ -134,7 +134,7 @@ class DashboardTest extends WebDriverTestCase
 
         $this->getGroups()[2]->findElement(
             //Delete group button
-            WebDriverBy::cssSelector('.groups .widget-box:first-child .widget-header .right a:nth-child(2)')
+            WebDriverBy::cssSelector('.widget-header .right a:nth-child(2)')
         )->click();
 
         $this->waitForAlert();
@@ -143,7 +143,7 @@ class DashboardTest extends WebDriverTestCase
 
         $this->getGroups()[2]->findElement(
             //Delete group button
-            WebDriverBy::cssSelector('.groups .widget-box:first-child .widget-header .right a:nth-child(2)')
+            WebDriverBy::cssSelector('.widget-header .right a:nth-child(2)')
         )->click();
 
         $this->waitForAlert();
