@@ -51,7 +51,7 @@ class ViewTestTest extends WebDriverTestCase
         $this->clickThroughToTest(1);
 
         $this->waitForLoadingAnimation();
-        $this->getActionItem(3)->click();
+        $this->getActionItem(2)->click();
 
         $this->waitForAlert();
         $this->webDriver->switchTo()->alert()->accept();
@@ -68,7 +68,7 @@ class ViewTestTest extends WebDriverTestCase
         $this->clickThroughToTest(1);
 
         $this->waitForLoadingAnimation();
-        $this->getActionItem(1)->click();
+        $this->getActionItem(3)->click();
         $this->waitForLoadingAnimation();
         $this->assertCount(4, $this->getResultsOnPage());
     }
