@@ -48,7 +48,7 @@ class ManageUsersTest extends WebDriverTestCase
 
         $lockButton->click();
         $this->waitForLoadingAnimation();
-        $this->assertEquals('Unlock', $this->getUsers(':nth-child(2) .buttons a:nth-child(2')[0]->getText());
+        $this->assertEquals('Unlock', $this->getUsers(':nth-child(2) .buttons a:nth-child(2)')[0]->getText());
 
         $this->webDriver->get('http://127.0.0.1:8000/logout');
         $this->logInAsUser('user-2');
@@ -58,7 +58,7 @@ class ManageUsersTest extends WebDriverTestCase
         $this->logInAsUser1();
         $this->getUsers(':nth-child(2) .buttons a:nth-child(2')[0]->click();
         $this->waitForLoadingAnimation();
-        $this->assertEquals('Lock', $this->getUsers(':nth-child(2) .buttons a:nth-child(2')[0]->getText());
+        $this->assertEquals('Lock', $this->getUsers(':nth-child(2) .buttons a:nth-child(2)')[0]->getText());
 
         $this->webDriver->get('http://127.0.0.1:8000/logout');
         $this->logInAsUser('user-2');
@@ -67,7 +67,7 @@ class ManageUsersTest extends WebDriverTestCase
 
     public function testDeleteUser()
     {
-        $deleteButton = $this->getUsers(':nth-child(2) .buttons a:nth-child(3')[0];
+        $deleteButton = $this->getUsers(':nth-child(2) .buttons a:nth-child(3)')[0];
         $this->assertEquals('Delete', $deleteButton->getText());
 
         $deleteButton->click();
