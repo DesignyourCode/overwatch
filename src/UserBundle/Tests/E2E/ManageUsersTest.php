@@ -100,7 +100,7 @@ class ManageUsersTest extends WebDriverTestCase
     public function testEditRoleAndCancel()
     {
         $before = $this->getUsers(' div.user')[2]->getAttribute('class');
-        $this->getUsers(':nth-child(2) div a:nth-child(4)')[0]->click();
+        $this->getUsers(':nth-child(2) .user .buttons a:first-child')[0]->click();
         $this->webDriver->findElement(
             WebDriverBy::cssSelector('div.dialog a:last-child')
         )->click();
