@@ -47,7 +47,7 @@ class AddEditTestTest extends WebDriverTestCase
             WebDriverBy::cssSelector("button[data-ng-click='save()']")
         )->click();
         $this->waitForLoadingAnimation();
-        $this->assertEquals('UnUnTestium', $this->getHeaderText());
+        $this->assertEquals("View Test 'UnUnTestium'", $this->getHeaderText());
     }
 
     public function testAddTest()
