@@ -22,33 +22,33 @@ class ManageUsersTest extends WebDriverTestCase
     {
         $this->assertEquals('Manage Users', $this->getHeaderText());
         $this->assertCount(3, $this->getUsers());
-        $this->assertContains(strtoupper(UserFixtures::$users['user-1']->getEmail(), $this->getUsers()[0]->getText()));
+        $this->assertContains(strtoupper(UserFixtures::$users['user-1']->getEmail()), $this->getUsers()[0]->getText());
         $this->assertContains('role_super_admin', $this->getUsers(' div.user')[0]->getAttribute('class'));
-        $this->assertContains(strtoupper(UserFixtures::$users['user-2']->getEmail(), $this->getUsers()[1]->getText()));
+        $this->assertContains(strtoupper(UserFixtures::$users['user-2']->getEmail()), $this->getUsers()[1]->getText());
         $this->assertContains('role_user', $this->getUsers(' div.user')[1]->getAttribute('class'));
-        $this->assertContains(strtoupper(UserFixtures::$users['user-3']->getEmail(), $this->getUsers()[2]->getText()));
+        $this->assertContains(strtoupper(UserFixtures::$users['user-3']->getEmail()), $this->getUsers()[2]->getText());
         $this->assertContains('role_admin', $this->getUsers(' div.user')[2]->getAttribute('class'));
     }
 
     public function testCannotEditMe()
     {
-        $this->assertFalse($this->getUsers(':first-child div.user a[title]')[0]->isDisplayed());
-        $this->assertFalse($this->getUsers(':first-child div.user a[title]')[1]->isDisplayed());
-        $this->assertFalse($this->getUsers(':first-child div.user a[title]')[2]->isDisplayed());
+        $this->assertFalse($this->getUsers(':first-child div.user .buttons a[title]')[0]->isDisplayed());
+        $this->assertFalse($this->getUsers(':first-child div.user .buttons a[title]')[1]->isDisplayed());
+        $this->assertFalse($this->getUsers(':first-child div.user .buttons a[title]')[2]->isDisplayed());
 
-        $itsyou = $this->getUsers(':first-child div.user a:not([title])')[0];
+        $itsyou = $this->getUsers(':first-child div.user .its-you:not([title])')[0];
         $this->assertTrue($itsyou->isDisplayed());
         $this->assertContains("It's you!", $itsyou->getText());
     }
 
     public function testLockUser()
     {
-        $lockButton = $this->getUsers(':nth-child(2) div a:nth-child(3)')[0];
+        $lockButton = $this->getUsers(':nth-child(2) div.user .buttons a:nth-child(2)')[0];
         $this->assertEquals('Lock', $lockButton->getText());
 
         $lockButton->click();
         $this->waitForLoadingAnimation();
-        $this->assertEquals('Unlock', $this->getUsers(':nth-child(2) div a:nth-child(3)')[0]->getText());
+        $this->assertEquals('Unlock', $this->getUsers(':nth-child(2) .buttons a:nth-child(2')[0]->getText());
 
         $this->webDriver->get('http://127.0.0.1:8000/logout');
         $this->logInAsUser('user-2');
@@ -56,9 +56,9 @@ class ManageUsersTest extends WebDriverTestCase
         $this->assertEquals('User account is locked.', $this->webDriver->findElement(WebDriverBy::cssSelector('#page > div'))->getText());
 
         $this->logInAsUser1();
-        $this->getUsers(':nth-child(2) div a:nth-child(3)')[0]->click();
+        $this->getUsers(':nth-child(2) .buttons a:nth-child(2')[0]->click();
         $this->waitForLoadingAnimation();
-        $this->assertEquals('Lock', $this->getUsers(':nth-child(2) div a:nth-child(3)')[0]->getText());
+        $this->assertEquals('Lock', $this->getUsers(':nth-child(2) .buttons a:nth-child(2')[0]->getText());
 
         $this->webDriver->get('http://127.0.0.1:8000/logout');
         $this->logInAsUser('user-2');
@@ -67,7 +67,7 @@ class ManageUsersTest extends WebDriverTestCase
 
     public function testDeleteUser()
     {
-        $deleteButton = $this->getUsers(':nth-child(2) div a:nth-child(2)')[0];
+        $deleteButton = $this->getUsers(':nth-child(2) .buttons a:nth-child(3')[0];
         $this->assertEquals('Delete', $deleteButton->getText());
 
         $deleteButton->click();
@@ -84,7 +84,7 @@ class ManageUsersTest extends WebDriverTestCase
         $this->webDriver->get('http://127.0.0.1:8000/logout');
         $this->logInAsUser('user-2');
         $this->assertEquals('http://127.0.0.1:8000/login', $this->webDriver->getCurrentURL());
-        $this->assertEquals('Bad credentials.', $this->webDriver->findElement(WebDriverBy::cssSelector('#page > div'))->getText());
+        $this->assertEquals('Bad credentials.', $this->webDriver->findElement(WebDriverBy::cssSelector('main'))->getText());
     }
 
     public function testEditUserRole()
@@ -132,7 +132,7 @@ class ManageUsersTest extends WebDriverTestCase
     private function getUsers($suffix = '')
     {
         return $this->webDriver->findElements(
-            WebDriverBy::cssSelector('.users li.ng-scope' . $suffix)
+            WebDriverBy::cssSelector('.users li' . $suffix)
         );
     }
 
