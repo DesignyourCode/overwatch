@@ -21,6 +21,10 @@ class MyAccountTest extends WebDriverTestCase
         $this->waitForLoadingAnimation();
 
         $this->webDriver->findElement(
+            WebDriverBy::cssSelector('.header-nav .nav-profile')
+        )->click();
+
+        $this->webDriver->findElement(
             WebDriverBy::cssSelector('.header-nav .nav-profile .sub-menu li.first a')
         )->click();
         $this->waitForLoadingAnimation();

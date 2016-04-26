@@ -45,7 +45,7 @@ class EditGroupTest extends WebDriverTestCase
         $this->assertContains(TestGroupFixtures::$groups['group-1']->getName(), $this->getHeaderText());
 
         $this->webDriver->findElement(
-            WebDriverBy::cssSelector('ul.users li:nth-child(3) a:nth-child(1)')
+            WebDriverBy::cssSelector('.edit-group .edit-group-buttons a:nth-child(1)')
         )->click();
 
         $this->waitForAlert();
