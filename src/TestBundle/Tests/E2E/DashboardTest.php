@@ -109,18 +109,20 @@ class DashboardTest extends WebDriverTestCase
         $this->logInAsUser('user-1');
         $this->waitForLoadingAnimation();
 
-        $tests = $this->getGroups()[0]->findElements(
+        $this->assertCount(2, $this->getGroups()[0]->findElements(
             WebDriverBy::cssSelector('.tests li .test .status.passed')
-        );
+        ));
 
-        $this->assertCount(2, $tests);
+        $tests = $this->getGroups()[0]->findElements(
+            WebDriverBy::cssSelector('.tests li .test')
+        );
         $this->assertContains(TestFixtures::$tests['test-1']->getName(), $tests[0]->getText());
         $this->assertEquals($this->getHoverTextForTest(TestFixtures::$tests['test-1']), $this->getHoverTextForTest($tests[0]));
         $this->assertContains(TestFixtures::$tests['test-2']->getName(), $tests[1]->getText());
         $this->assertEquals($this->getHoverTextForTest(TestFixtures::$tests['test-2']), $this->getHoverTextForTest($tests[1]));
 
         $tests = $this->getGroups()[1]->findElements(
-            WebDriverBy::cssSelector('.tests li.ng-scope .test')
+            WebDriverBy::cssSelector('.tests li .test')
         );
         $this->assertCount(1, $tests);
         $this->assertContains(TestFixtures::$tests['test-3']->getName(), $tests[0]->getText());

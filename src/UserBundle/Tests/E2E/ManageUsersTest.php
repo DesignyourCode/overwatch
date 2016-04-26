@@ -53,7 +53,7 @@ class ManageUsersTest extends WebDriverTestCase
         $this->webDriver->get('http://127.0.0.1:8000/logout');
         $this->logInAsUser('user-2');
         $this->assertEquals('http://127.0.0.1:8000/login', $this->webDriver->getCurrentURL());
-        $this->assertEquals('User account is locked.', $this->webDriver->findElement(WebDriverBy::cssSelector('main'))->getText());
+        $this->assertContains('User account is locked.', $this->webDriver->findElement(WebDriverBy::cssSelector('main'))->getText());
 
         $this->logInAsUser1();
         $this->getUsers(':nth-child(2) .buttons a:nth-child(2')[0]->click();
@@ -89,7 +89,7 @@ class ManageUsersTest extends WebDriverTestCase
 
     public function testEditUserRole()
     {
-        $this->getUsers(':nth-child(2) div a:nth-child(4)')[0]->click();
+        $this->getUsers(':nth-child(2) .user .buttons a:nth-child(1)')[0]->click();
         $this->webDriver->findElement(
             WebDriverBy::cssSelector('div.dialog button:nth-child(6)')
         )->click();
