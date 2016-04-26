@@ -52,7 +52,7 @@ class EditGroupTest extends WebDriverTestCase
         $this->webDriver->switchTo()->alert()->sendKeys('Group Number One');
         $this->webDriver->switchTo()->alert()->accept();
         $this->waitForLoadingAnimation();
-        $this->assertEquals('Group Number One', $this->getHeaderText());
+        $this->assertContains('Group Number One', $this->getHeaderText());
 
         $this->webDriver->get('http://127.0.0.1:8000/#/');
         $this->waitForLoadingAnimation();
