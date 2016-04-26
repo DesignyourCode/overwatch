@@ -23,11 +23,11 @@ class ManageUsersTest extends WebDriverTestCase
         $this->assertEquals('Manage Users', $this->getHeaderText());
         $this->assertCount(3, $this->getUsers());
         $this->assertContains(strtoupper(UserFixtures::$users['user-1']->getEmail()), $this->getUsers()[0]->getText());
-        $this->assertContains('role_super_admin', $this->getUsers(' div.user')[0]->getAttribute('class'));
+        $this->assertContains('role_super_admin', $this->getUsers(' div.avatar')[0]->getAttribute('class'));
         $this->assertContains(strtoupper(UserFixtures::$users['user-2']->getEmail()), $this->getUsers()[1]->getText());
-        $this->assertContains('role_user', $this->getUsers(' div.user')[1]->getAttribute('class'));
+        $this->assertContains('role_user', $this->getUsers(' div.avatar')[1]->getAttribute('class'));
         $this->assertContains(strtoupper(UserFixtures::$users['user-3']->getEmail()), $this->getUsers()[2]->getText());
-        $this->assertContains('role_admin', $this->getUsers(' div.user')[2]->getAttribute('class'));
+        $this->assertContains('role_admin', $this->getUsers(' div.avatar')[2]->getAttribute('class'));
     }
 
     public function testCannotEditMe()
@@ -84,7 +84,7 @@ class ManageUsersTest extends WebDriverTestCase
         $this->webDriver->get('http://127.0.0.1:8000/logout');
         $this->logInAsUser('user-2');
         $this->assertEquals('http://127.0.0.1:8000/login', $this->webDriver->getCurrentURL());
-        $this->assertEquals('Bad credentials.', $this->webDriver->findElement(WebDriverBy::cssSelector('main'))->getText());
+        $this->assertEquals('Bad credentials.', $this->webDriver->findElement(WebDriverBy::cssSelector('main > div'))->getText());
     }
 
     public function testEditUserRole()

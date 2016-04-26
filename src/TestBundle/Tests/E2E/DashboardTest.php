@@ -52,11 +52,11 @@ class DashboardTest extends WebDriverTestCase
         $this->assertFalse($this->getFirstTestDeleteButton()->isDisplayed());
         $this->assertFalse($this->webDriver->findElement(
             //Second test's delete button
-            WebDriverBy::cssSelector('ul.tests li:nth-child(2) a:nth-child(2)')
+            WebDriverBy::cssSelector('ul.tests li:nth-child(2) a:nth-child(4)')
         )->isDisplayed());
         $this->assertFalse($this->webDriver->findElement(
             //Add test button
-            WebDriverBy::cssSelector('ul.tests li:last-child a:nth-child(2)')
+            WebDriverBy::cssSelector('ul.tests li:last-child a:first-child')
         )->isDisplayed());
         $this->assertFalse($this->getAddGroupButton()->isDisplayed());
     }
@@ -110,7 +110,7 @@ class DashboardTest extends WebDriverTestCase
         $this->waitForLoadingAnimation();
 
         $tests = $this->getGroups()[0]->findElements(
-            WebDriverBy::cssSelector('.tests li:first-child .test .status.passed')
+            WebDriverBy::cssSelector('.tests li .test .status.passed')
         );
 
         $this->assertCount(2, $tests);
@@ -120,7 +120,7 @@ class DashboardTest extends WebDriverTestCase
         $this->assertEquals($this->getHoverTextForTest(TestFixtures::$tests['test-2']), $this->getHoverTextForTest($tests[1]));
 
         $tests = $this->getGroups()[1]->findElements(
-            WebDriverBy::cssSelector('.tests li.ng-scope div')
+            WebDriverBy::cssSelector('.tests li.ng-scope .test')
         );
         $this->assertCount(1, $tests);
         $this->assertContains(TestFixtures::$tests['test-3']->getName(), $tests[0]->getText());
