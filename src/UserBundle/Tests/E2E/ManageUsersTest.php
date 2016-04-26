@@ -53,7 +53,7 @@ class ManageUsersTest extends WebDriverTestCase
         $this->webDriver->get('http://127.0.0.1:8000/logout');
         $this->logInAsUser('user-2');
         $this->assertEquals('http://127.0.0.1:8000/login', $this->webDriver->getCurrentURL());
-        $this->assertEquals('User account is locked.', $this->webDriver->findElement(WebDriverBy::cssSelector('#page > div'))->getText());
+        $this->assertEquals('User account is locked.', $this->webDriver->findElement(WebDriverBy::cssSelector('main'))->getText());
 
         $this->logInAsUser1();
         $this->getUsers(':nth-child(2) .buttons a:nth-child(2')[0]->click();
@@ -89,7 +89,7 @@ class ManageUsersTest extends WebDriverTestCase
 
     public function testEditUserRole()
     {
-        $this->getUsers(':nth-child(2) div a:nth-child(4)')[0]->click();
+        $this->getUsers(':nth-child(2) div a:nth-child(4)')->click();
         $this->webDriver->findElement(
             WebDriverBy::cssSelector('div.dialog button:nth-child(6)')
         )->click();
@@ -100,9 +100,9 @@ class ManageUsersTest extends WebDriverTestCase
     public function testEditRoleAndCancel()
     {
         $before = $this->getUsers(' div.user')[2]->getAttribute('class');
-        $this->getUsers(':nth-child(2) .user .buttons a:first-child')[0]->click();
+        $this->getUsers(':nth-child(2) .user .buttons a:first-child')->click();
         $this->webDriver->findElement(
-            WebDriverBy::cssSelector('div.dialog a:last-child')
+            WebDriverBy::cssSelector('div.dialog .close-dialog')
         )->click();
         $this->waitForLoadingAnimation();
         $this->assertEquals($before, $this->getUsers(' div.user')[2]->getAttribute('class'));
@@ -112,7 +112,7 @@ class ManageUsersTest extends WebDriverTestCase
     {
         $this->webDriver->findElement(
             //Register button
-            WebDriverBy::cssSelector('ul.users li:last-child a')
+            WebDriverBy::cssSelector('.widget-box .row .create-user')
         )->click();
         $this->waitForAlert();
         $this->webDriver->switchTo()->alert()->dismiss();
@@ -120,7 +120,7 @@ class ManageUsersTest extends WebDriverTestCase
 
         $this->webDriver->findElement(
             //Register button
-            WebDriverBy::cssSelector('ul.users li:last-child a')
+            WebDriverBy::cssSelector('.widget-box .row .create-user')
         )->click();
         $this->waitForAlert();
         $this->webDriver->switchTo()->alert()->sendKeys('void@example.com');
