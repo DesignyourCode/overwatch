@@ -26,7 +26,7 @@
                         <div class="status {{ test.result.status|lowercase }}"></div>
 
                         <h3>{{ test.name }} (Last Tested {{ test.result.createdAt|timeago }})</h3>
-                        <p class="test-expect">Expect {{ test.actual }} {{ test.expectation }} {{ test.expected }}</p>
+                        <p class="test-expect">Expect {{ test.actual }} {{ test.expectation }} {{ test.expected }} </p>
 
                         <div class="buttons">
                             <a class="btn btn-blue btn-small" data-ng-click="runTest(test.id)" title="Run test '{{ test.name }}' now" data-ng-show="isGranted('ADMIN', group)"><i class="fa fa-play" aria-hidden="true"></i> Run</a>
