@@ -56,7 +56,7 @@ class ManageUsersTest extends WebDriverTestCase
         $this->assertContains('User account is locked.', $this->webDriver->findElement(WebDriverBy::cssSelector('main'))->getText());
 
         $this->logInAsUser1();
-        $this->getUsers(':nth-child(2) .buttons a:nth-child(2')[0]->click();
+        $this->getUsers(':nth-child(2) .buttons a:nth-child(2)')[0]->click();
         $this->waitForLoadingAnimation();
         $this->assertEquals('Lock', $this->getUsers(':nth-child(2) .buttons a:nth-child(2)')[0]->getText());
 
@@ -91,7 +91,7 @@ class ManageUsersTest extends WebDriverTestCase
     {
         $this->getUsers(':nth-child(2) .user .buttons a:nth-child(1)')[0]->click();
         $this->webDriver->findElement(
-            WebDriverBy::cssSelector('div.dialog button:nth-child(6)')
+            WebDriverBy::cssSelector('.dialog .row button:nth-child(2)')
         )->click();
         $this->waitForLoadingAnimation();
         $this->assertContains('role_admin', $this->getUsers(' div.user')[2]->getAttribute('class'));
