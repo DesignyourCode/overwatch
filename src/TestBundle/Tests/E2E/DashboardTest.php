@@ -228,7 +228,7 @@ class DashboardTest extends WebDriverTestCase
     {
         //If passed a fixture, construct expected value
         if ($test instanceof \Overwatch\TestBundle\Entity\Test) {
-            return 'Expect ' . $test->getActual() . ' ' . $test->getExpectation() . ' ' . $test->getExpected() . ' ';
+            return 'Expect ' . $test->getActual() . ' ' . $test->getExpectation() . ' ' . $test->getExpected();
         }
 
         //Else, find text
