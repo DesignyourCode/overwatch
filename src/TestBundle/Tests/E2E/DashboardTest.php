@@ -118,10 +118,7 @@ class DashboardTest extends WebDriverTestCase
         );
         $this->assertContains(TestFixtures::$tests['test-1']->getName(), $tests[0]->getText());
 
-        $expect = $this->getGroups()[0]->findElements(
-            WebDriverBy::tagName('.tests li .test .test-expect')
-        );
-        $this->assertEquals('Expect ' . $test->getActual() . ' ' . $test->getExpectation() . ' ' . $test->getExpected(), $expect[0]->getText());
+        $this->assertEquals($this->getTextForTest(TestFixtures::$tests['test-1']), $this->getTextForTest($tests[0]));
 
         $this->assertContains(TestFixtures::$tests['test-2']->getName(), $tests[1]->getText());
         $this->assertEquals($this->getHoverTextForTest(TestFixtures::$tests['test-2']), $this->getHoverTextForTest($tests[1]));
@@ -226,6 +223,18 @@ class DashboardTest extends WebDriverTestCase
             WebDriverBy::cssSelector('.tests li.ng-scope')
         );
     }
+
+    private function getTextForTest($test)
+    {
+        //If passed a fixture, construct expected value
+        if ($test instanceof \Overwatch\TestBundle\Entity\Test) {
+            return 'Expect ' . $test->getActual() . ' ' . $test->getExpectation() . ' ' . $test->getExpected();
+        }
+        //Else, find actual hover text
+        return $test->findElement(
+            WebDriverBy::cssSelector('p.test-expect')
+        )->getText();
+    }
 
     private function getHoverTextForTest($test)
     {
