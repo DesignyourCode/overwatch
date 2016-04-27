@@ -121,7 +121,7 @@ class DashboardTest extends WebDriverTestCase
         $expect = $this->getGroups()[0]->findElements(
             WebDriverBy::tagName('.tests li .test .test-expect')
         );
-        $this->assertEquals($expect[0]->getText());
+        $this->assertEquals('Expect ' . $test->getActual() . ' ' . $test->getExpectation() . ' ' . $test->getExpected(), $expect[0]->getText());
 
         $this->assertContains(TestFixtures::$tests['test-2']->getName(), $tests[1]->getText());
         $this->assertEquals($this->getHoverTextForTest(TestFixtures::$tests['test-2']), $this->getHoverTextForTest($tests[1]));
