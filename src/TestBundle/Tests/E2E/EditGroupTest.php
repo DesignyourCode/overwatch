@@ -57,7 +57,7 @@ class EditGroupTest extends WebDriverTestCase
         $this->webDriver->get('http://127.0.0.1:8000/#/');
         $this->waitForLoadingAnimation();
         $this->assertContains('Group Number One', $this->webDriver->findElements(
-            WebDriverBy::cssSelector('.groups > li.ng-scope')
+            WebDriverBy::cssSelector('.groups .widget-box')
         )[0]->getText());
     }
 
