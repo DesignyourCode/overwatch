@@ -91,7 +91,7 @@ class AddEditTestTest extends WebDriverTestCase
     private function getTestField($field)
     {
         return $this->webDriver->findElement(
-            WebDriverBy::cssSelector('*[data-ng-model="test' . $field . '"]')
+            WebDriverBy::cssSelector("*[data-ng-model='test.$field']")
         );
     }
 
