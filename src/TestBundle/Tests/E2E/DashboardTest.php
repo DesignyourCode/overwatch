@@ -120,7 +120,7 @@ class DashboardTest extends WebDriverTestCase
 
         $expect = $this->webDriver->findElement(
             WebDriverBy::tagName('.test-expect')
-        )
+        );
         $this->assertEquals($expect[0]->getText());
 
         $this->assertContains(TestFixtures::$tests['test-2']->getName(), $tests[1]->getText());
