@@ -59,8 +59,7 @@ class AddEditTestTest extends WebDriverTestCase
 
         $this->getTestField('name')->sendKeys('Github Status Resolves');
         $this->getTestField('actual')->sendKeys('status.github.com');
-        // (new WebDriverSelect($this->getTestField('expectation')))->selectByValue('string:toResolveTo');
-        var_dump(new WebDriverSelect($this->getTestField('expectation')));
+        (new WebDriverSelect($this->getTestField('expectation')))->selectByValue('string:toResolveTo');
         $this->getTestField('expected')->sendKeys('octostatus-production.github.com');
         $this->getTestField('expected')->sendKeys(WebDriverKeys::ENTER);
 
