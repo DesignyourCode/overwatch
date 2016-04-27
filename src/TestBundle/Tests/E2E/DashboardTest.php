@@ -117,7 +117,12 @@ class DashboardTest extends WebDriverTestCase
             WebDriverBy::cssSelector('.tests li .test')
         );
         $this->assertContains(TestFixtures::$tests['test-1']->getName(), $tests[0]->getText());
-        $this->assertEquals($this->getHoverTextForTest(TestFixtures::$tests['test-1']), $this->getHoverTextForTest($tests[0]));
+
+        $expect = $this->webDriver->findElement(
+            WebDriverBy::tagName('.test-expect')
+        )
+        $this->assertEquals($expect[0]->getText());
+
         $this->assertContains(TestFixtures::$tests['test-2']->getName(), $tests[1]->getText());
         $this->assertEquals($this->getHoverTextForTest(TestFixtures::$tests['test-2']), $this->getHoverTextForTest($tests[1]));
 
