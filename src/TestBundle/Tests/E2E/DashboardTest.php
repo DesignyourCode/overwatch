@@ -121,14 +121,14 @@ class DashboardTest extends WebDriverTestCase
         $this->assertEquals($this->getTextForTest(TestFixtures::$tests['test-1']), $this->getTextForTest($tests[0]));
 
         $this->assertContains(TestFixtures::$tests['test-2']->getName(), $tests[1]->getText());
-        $this->assertEquals($this->getHoverTextForTest(TestFixtures::$tests['test-2']), $this->getHoverTextForTest($tests[1]));
+        $this->assertEquals($this->getTextForTest(TestFixtures::$tests['test-2']), $this->getTextForTest($tests[1]));
 
         $tests = $this->getGroups()[1]->findElements(
             WebDriverBy::cssSelector('.tests li .test')
         );
         $this->assertCount(1, $tests);
         $this->assertContains(TestFixtures::$tests['test-3']->getName(), $tests[0]->getText());
-        $this->assertEquals($this->getHoverTextForTest(TestFixtures::$tests['test-3']), $this->getHoverTextForTest($tests[0]));
+        $this->assertEquals($this->getTextForTest(TestFixtures::$tests['test-3']), $this->getTextForTest($tests[0]));
     }
 
     public function testDeleteGroup()
@@ -235,19 +235,6 @@ class DashboardTest extends WebDriverTestCase
         return trim($test->findElement(
             WebDriverBy::cssSelector('p.test-expect')
         )->getText());
-    }
-
-    private function getHoverTextForTest($test)
-    {
-        //If passed a fixture, construct expected value
-        if ($test instanceof \Overwatch\TestBundle\Entity\Test) {
-            return 'Expect ' . $test->getActual() . ' ' . $test->getExpectation() . ' ' . $test->getExpected();
-        }
-
-        //Else, find actual hover text
-        return $test->findElement(
-            WebDriverBy::tagName('span')
-        )->getAttribute('title');
     }
 
     private function getAddGroupButton()
