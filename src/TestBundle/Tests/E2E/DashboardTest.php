@@ -228,13 +228,13 @@ class DashboardTest extends WebDriverTestCase
     {
         //If passed a fixture, construct expected value
         if ($test instanceof \Overwatch\TestBundle\Entity\Test) {
-            return 'Expect ' . $test->getActual() . ' ' . $test->getExpectation() . ' ' . $test->getExpected();
+            return trim('Expect ' . $test->getActual() . ' ' . $test->getExpectation() . ' ' . $test->getExpected());
         }
 
         //Else, find text
-        return $test->findElement(
+        return trim($test->findElement(
             WebDriverBy::cssSelector('p.test-expect')
-        )->getText();
+        )->getText());
     }
 
     private function getHoverTextForTest($test)
